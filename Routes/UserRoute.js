@@ -114,7 +114,11 @@ userRoute.put(
        user.email  = req.body.email || user.email
        user.dateOfBirth = req.body.dateOfBirth || user.dateOfBirth
        user.contactNumber = req.body.contactNumber || user.contactNumber
+       user.userType = req.body.userType || user.userType
+       user.aboutMe = req.body.aboutMe || user.aboutMe
        user.userAddress = req.body.userAddress || user.userAddress
+       user.accountTitle = req.body.accountTitle || user.accountTitle
+       user.skills = req.body.skills || user.skills
         if(req.body.password){
             user.password = req.body.password
         }
@@ -124,8 +128,12 @@ userRoute.put(
             name: updatedUser.name,
             email: updatedUser.email,
             password:updatedUser.password,
+            userType:updatedUser.userType,
+            accountTitle: updatedUser.accountTitle,
+            skills:updatedUser.skills,
             dateOfBirth:updatedUser.dateOfBirth,
             contactNumber: updatedUser.contactNumber,
+            aboutMe: updatedUser.aboutMe,
             userImage : updatedUser.userImage,
             userAddress: updatedUser.userAddress,
             usersDetails: updatedUser.usersDetails,

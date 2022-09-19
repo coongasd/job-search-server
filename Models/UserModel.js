@@ -15,6 +15,11 @@ const userSchema = mongoose.Schema({
         type:String,
         require:true,
     },
+    userType:{
+        type:String,
+        require: true,
+        default:"client",
+    },
     dateOfBirth:{
         type:Date,
         require: false,
@@ -30,6 +35,10 @@ const userSchema = mongoose.Schema({
     contactNumber:{
         type:String,
         require:false
+    },
+    skills:{
+        type:Array,
+        require: false
     },
     userImage:{
         type:String,
@@ -54,6 +63,10 @@ const userSchema = mongoose.Schema({
     },
     workExperiences:{
         type: Array,
+        require: false
+    },
+    accountTitle:{
+        type:String,
         require: false
     },
     isAdmin:{

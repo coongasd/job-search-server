@@ -4,6 +4,7 @@ import connectDatabase from "./config/MongoDb.js";
 import { errorHandler, notFound } from "./Middware/Error.js";
 import ImportData from './ImportData.js';
 import userRoute from "./Routes/UserRoute.js";
+import jobRoute from "./Routes/JobRoute.js";
 dotenv.config();
 connectDatabase();
 const app = express();
@@ -30,6 +31,7 @@ app.use(function (req, res, next) {
 
 app.use("/api/import", ImportData);
 app.use("/api/user", userRoute);
+app.use("/api/job", jobRoute);
 app.use(notFound);
 app.use(errorHandler);  
 
