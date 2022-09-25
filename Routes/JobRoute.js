@@ -51,10 +51,21 @@ jobRoute.post(
     
 }));
 jobRoute.get(
-    "/all",
+    "/",
     
     asyncHandler(async (req, res) => {
-        const jobs = await Job.find({    })
+     
+        const keyword = req.query.keyword ? {
+            jobTitle:{
+                $regex: req.query.keyword,
+                $options: "i"
+            }
+        }
+        :{
+            
+        };
+      
+        const jobs = await Job.find({ ...keyword })
         res.json(jobs)
     })
 );
@@ -73,4 +84,34 @@ jobRoute.get(
     })
 );
         
+
+ // Ung tuyen cong viec
+ jobRoute.put(
+    "/:id/apply",
+    asyncHandler(async (req, res) => {
+        
+       
+          
+            const job = await Job.findById(req.params.id);
+  
+            if(job){
+                
+                 job.applyTime = Date.now();
+                 job.offers.push({
+            
+                    users:req?.body?.users,
+                    applyTime:req?.body?.applyTime,
+                    moneyExpect : req?.body?.moneyExpect,
+                    timeToComplete: req?.body?.timeToComplete,
+                });
+
+                 const updatedJob = await job.save()
+                 res.json(updatedJob);
+
+              }
+              
+        
+            
+            }
+));
 export default jobRoute;

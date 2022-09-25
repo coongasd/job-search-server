@@ -32,10 +32,11 @@ const jobSchema = mongoose.Schema({
     },
     offers:[{
         users:{
-            type:mongoose.Schema.Types.Object,
-            required: true,
+            type:Object,
+            required: false,
             ref: "User",
         },
+        applyTime:{type:String},
         moneyExpect:{type:String},
         timeToComplete:{type:String}
     }]
